@@ -56,7 +56,7 @@ Have a seat and enjoy the ride!`,
           curvePoints[2].z
         ),
         title: "Lorem",
-        subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        subtitle: `Lorem hello there`,
       },
       {
         cameraRailDist: -1,
@@ -384,8 +384,10 @@ Have a seat and enjoy the ride!`,
 
   const tl = useRef();
   const backgroundColors = useRef({
-    colorA: "#3535cc",
-    colorB: "#abaadd",
+    // colorA: "#3535cc",
+    // colorB: "#abaadd",
+    colorA: "#001524",
+    colorB: "#232D3F",
   });
 
   useLayoutEffect(() => {
@@ -393,18 +395,24 @@ Have a seat and enjoy the ride!`,
 
     tl.current.to(backgroundColors.current, {
       duration: 1,
-      colorA: "#6f35cc",
-      colorB: "#ffad30",
+      // colorA: "#6f35cc",
+      // colorB: "#ffad30",
+      colorA: "#2E4374",
+      colorB: "#4B527E",
     });
     tl.current.to(backgroundColors.current, {
       duration: 1,
+      // colorA: "#424242",
+      // colorB: "#ffcc00",
       colorA: "#424242",
-      colorB: "#ffcc00",
+      colorB: "#e6c339",
     });
     tl.current.to(backgroundColors.current, {
       duration: 1,
-      colorA: "#81318b",
-      colorB: "#55ab8f",
+      // colorA: "#81318b",
+      // colorB: "#55ab8f",
+      colorA: "#252B48",
+      colorB: "#445069",
     });
 
     tl.current.pause();

@@ -5,7 +5,8 @@ import React, { useRef } from "react";
 const HELIX_SPEED = 6;
 
 export function Airplane(props) {
-  const { nodes, materials } = useGLTF("./models/time_machine/model.glb");
+  // const { nodes, materials } = useGLTF("./models/airplane/model.glb");
+  const { nodes, materials } = useGLTF("./models/airplane/model.glb");
 
   const helix = useRef();
 
