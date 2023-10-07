@@ -6,9 +6,72 @@
   width: 100vw;
   height: 100vh;
 }
+.btn {
+  border: 2px solid rgb(30, 77, 153);
+  border-radius: 3rem;
 
-.abhinav {
-  color: red;
+  color: rgb(30, 77, 153);
+
+  font-family: "Roboto", sans-serif;
+
+  overflow: hidden;
+
+  padding: 1rem 2rem;
+
+  position: relative;
+
+  text-decoration: none;
+
+  transition: 0.2s transform ease-in-out;
+
+  will-change: transform;
+
+  z-index: 0;
+}
+
+.btn::after {
+  background-color: rgb(30, 77, 153);
+
+  border-radius: 3rem;
+
+  content: "";
+
+  display: block;
+
+  height: 100%;
+
+  width: 100%;
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  transform: translate(-100%, 0) rotate(10deg);
+
+  transform-origin: top left;
+
+  transition: 0.4s transform ease-out;
+
+  will-change: transform;
+
+  z-index: -1;
+}
+
+.btn:hover::after {
+  transform: translate(0, 0);
+}
+
+.btn:hover {
+  border: 2px solid transparent;
+
+  color: white;
+
+  transform: scale(1.05);
+  background: white;
+
+  will-change: transform;
 }
 
 body {
@@ -29,5 +92,3 @@ body {
   background: white;
   height: 10%;
 }
-
-
