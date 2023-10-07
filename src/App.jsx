@@ -2,6 +2,7 @@ import { ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, Noise } from "@react-three/postprocessing";
 import { Experience } from "./components/Experience";
+import Hero from "./components/Hero";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Noise opacity={0.3} />
         </EffectComposer>
       </Canvas>
+      {/* <Hero /> */}
     </>
   );
 }
