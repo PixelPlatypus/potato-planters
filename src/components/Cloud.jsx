@@ -1,11 +1,21 @@
-import React from 'react'
+import { useGLTF } from "@react-three/drei";
+import React from "react";
+import { fadeOnBeforeCompile } from "../utils/fadeMaterial";
 
-function Cloud() {
+export function Cloud({ opacity, ...props }) {
+  const { nodes } = useGLTF("./models/cloud/model.gltf");
   return (
-    <div>
-      
-    </div>
-  )
+    <group {...props} dispose={null}>
+      <mesh geometry={nodes.Mball001.geometry}>
+        <meshStandardMaterial
+          onBeforeCompile={fadeOnBeforeCompile}
+          envMapIntensity={2}
+          transparent
+          opacity={opacity}
+        />
+      </mesh>
+    </group>
+  );
 }
 
-export default Cloud
+useGLTF.preload("./models/cloud/model.gltf");
