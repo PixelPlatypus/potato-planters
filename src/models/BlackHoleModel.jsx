@@ -23,9 +23,7 @@ const BlackHoleModel = (props) => {
                     name="Blackhole_ring_Blackhole_ring_0"
                     geometry={nodes.Blackhole_ring_Blackhole_ring_0.geometry}
                     material={materials.Blackhole_ring}
-                  >
-                    <meshStandardMaterial opacity={0.6} />
-                  </mesh>
+                  ></mesh>
                 </group>
                 <group
                   name="Blackhole_skin_001"
