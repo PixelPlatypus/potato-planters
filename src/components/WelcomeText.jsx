@@ -15,7 +15,7 @@ function WelcomeText() {
       </Link>
 
       <Link
-        to="/docs"
+        to="/research"
         className="btn inline-block text-2xl bg-white text-black px-6 py-3 rounded-full hover:bg-black hover:text-white transition-all transform-gpu duration-300 ease-in"
       >
         Read Our Research
