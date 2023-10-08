@@ -49,12 +49,10 @@ export const Experience = () => {
           curvePoints[1].y,
           curvePoints[1].z,
         ),
-        isText: true,
         text: {
           title: "Welcome to Roast-3369,",
           subtitle: `Have a seat and enjoy the ride!`,
         },
-        model: null,
       },
       {
         cameraRailDist: 1.5,
@@ -63,12 +61,10 @@ export const Experience = () => {
           curvePoints[2].y,
           curvePoints[2].z,
         ),
-        isText: true,
         text: {
-          title: "Lorem",
-          subtitle: `Lorem hello there`,
+          title: "Composition",
+          subtitle: "This planet is made up of diffent cores like..........",
         },
-        model: null,
       },
       {
         cameraRailDist: -1,
@@ -77,12 +73,10 @@ export const Experience = () => {
           curvePoints[3].y,
           curvePoints[3].z,
         ),
-        isText: true,
         text: {
-          title: "Lorem",
-          subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+          title: "Where life starts?",
+          subtitle: "Life started after the formation of organic compounds...",
         },
-        model: null,
       },
       {
         cameraRailDist: 1.5,
@@ -91,12 +85,11 @@ export const Experience = () => {
           curvePoints[4].y,
           curvePoints[4].z - 12,
         ),
-        isText: true,
         text: {
-          title: "Lorem",
-          subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+          title: "Ocean life",
+          subtitle:
+            "After researching about ocean life, we have simulated a model....",
         },
-        model: null,
       },
       {
         cameraRailDist: 1.5,
@@ -105,12 +98,37 @@ export const Experience = () => {
           curvePoints[5].y,
           curvePoints[5].z - 12,
         ),
-        isText: true,
         text: {
-          title: "Lorem Last",
-          subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+          title: "Macro life",
+          subtitle:
+            "After researching about macro life, we have simulated a model....",
         },
-        model: null,
+      },
+      {
+        cameraRailDist: 1.5,
+        position: new Vector3(
+          curvePoints[6].x - 3.5,
+          curvePoints[6].y,
+          curvePoints[6].z - 12,
+        ),
+        text: {
+          title: "Intelligent life",
+          subtitle:
+            "Due to the harsh conditions in the planet, chances of intelligent life is slim...",
+        },
+      },
+      {
+        cameraRailDist: 1.5,
+        position: new Vector3(
+          curvePoints[7].x + 3.5,
+          curvePoints[7].y,
+          curvePoints[7].z - 12,
+        ),
+        text: {
+          title: "Dream more",
+          subtitle:
+            "This is just a simulation, we can't predict the future of this planet...",
+        },
       },
     ];
   }, []);
@@ -500,13 +518,9 @@ export const Experience = () => {
         </group>
       </group>
       {/* TEXT */}
-      {textSections.map((textSection, index) =>
-        textSection.isText ? (
-          <TextSection {...textSection} key={index} />
-        ) : (
-          <h1> Idk man </h1>
-        ),
-      )}
+      {textSections.map((textSection, index) => (
+        <TextSection {...textSection} key={index} />
+      ))}
 
       {/* LINE */}
       <group position-y={-2}>
