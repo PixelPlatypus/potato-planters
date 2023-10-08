@@ -27,7 +27,7 @@ const AudioPlayer = () => {
         <source src="/audio/soundtrack.m4a" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      <button className="btn play-pause" onClick={toggleAudio}>
+      <button className="play-pause btn" onClick={toggleAudio}>
         {isPlaying ? <AiOutlinePauseCircle /> : <BsFillPlayCircleFill />}
       </button>
     </div>

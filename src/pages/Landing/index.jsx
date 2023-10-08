@@ -48,6 +48,7 @@ function Landing() {
       className="relative w-full h-screen bg-cover bg-center"
       style={{
         backgroundImage: "url(img/space.jpeg)",
+        overflow: 'hidden'
       }}
     >
       {smokeParticles.map((particle) => (
