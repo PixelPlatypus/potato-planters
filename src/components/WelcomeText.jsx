@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 function WelcomeText() {
   return (
     <div className="absolute top-1/3 left-1/4 text-center">
-      <h1 className="text-7xl mb-10 text-white">Welcome to Roast-3360</h1>
+      <h1 className="text-7xl mb-10 text-white">
+        Welcome to{" "}
+        <span className="text-red-400 font-bold animate-pulse hover:text-red-500">
+          Roast-3369
+        </span>
+      </h1>
 
       <Link
         to="/explore"

@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import { Canvas } from "@react-three/fiber";
-import EarthModel from "../../models/EarthModel";
 
+import PlanetModel from "../../models/PlanetModel";
 import WelcomeText from "../../components/WelcomeText";
 import styles from "./landing.module.css";
 
@@ -57,7 +56,7 @@ function Landing() {
       <Canvas>
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} />
-        <EarthModel position={[-7, -3, 0]} scale={[4, 5, 4]} />
+        <PlanetModel position={[-7, -3, 0]} scale={[2.5, 3, 2.5]} />
       </Canvas>
 
       <WelcomeText />

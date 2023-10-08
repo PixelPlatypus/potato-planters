@@ -11,7 +11,8 @@ import { TextSection } from "./TextSection";
 import CloudModel from "../models/CloudModel";
 import TimeMachineModel from "../models/TimeMachineModel";
 import BlackHoleModel from "../models/BlackHoleModel";
-import EarthModel from "../models/EarthModel";
+import PlanetModel from "../models/PlanetModel";
+import AsteroidModel from "../models/AsteroidModel";
 
 const LINE_NB_POINTS = 1000;
 const CURVE_DISTANCE = 250;
@@ -22,16 +23,16 @@ const FRICTION_DISTANCE = 42;
 
 const curvePoints = [
   new THREE.Vector3(0, 0, 0),
-  new THREE.Vector3(0, 0, -CURVE_DISTANCE), // Title
-  new THREE.Vector3(100, 0, -1.5 * CURVE_DISTANCE), // Subtopic
-  new THREE.Vector3(-100, 0, -2 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(0, 50, -CURVE_DISTANCE), // Title
+  new THREE.Vector3(50, 0, -1.5 * CURVE_DISTANCE), // Detail
+  new THREE.Vector3(-50, 0, -2 * CURVE_DISTANCE), // Image
   new THREE.Vector3(100, 0, -3 * CURVE_DISTANCE), // Title
   new THREE.Vector3(-100, 0, -3.5 * CURVE_DISTANCE), // Subtopic
   new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE), // Subtopic
   new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE), // Title
   new THREE.Vector3(100, 0, -5.5 * CURVE_DISTANCE), // Subtopic
   new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE), // Subtopic
-]
+];
 
 const textSections = [
   {
@@ -122,7 +123,28 @@ const textSections = [
         "This is just a simulation, we can't predict the future of this planet...",
     },
   },
-]
+];
+
+const models = [
+  // {
+  //   component: PlanetModel,
+  //   scale: new Vector3(10, 10, 10),
+  //   position: new Vector3(
+  //     curvePoints[1].x + 23,
+  //     curvePoints[1].y,
+  //     curvePoints[1].z - 30,
+  //   ),
+  // },
+  {
+    component: AsteroidModel,
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[2].x,
+      curvePoints[2].y - 10,
+      curvePoints[2].z,
+    ),
+  },
+];
 
 const clouds = [
   {
@@ -313,11 +335,7 @@ const clouds = [
   },
   {
     scale: new Vector3(4, 4, 4),
-    position: new Vector3(
-      curvePoints[8].x,
-      curvePoints[8].y,
-      curvePoints[8].z,
-    ),
+    position: new Vector3(curvePoints[8].x, curvePoints[8].y, curvePoints[8].z),
     rotation: new Euler(0, 0, 0),
   },
   {
@@ -329,19 +347,7 @@ const clouds = [
     ),
     rotation: new Euler(0, 0, 0),
   },
-]
-
-const models = [
-    {
-      component: EarthModel,
-      scale: new Vector3(1,1,1),
-      position: new Vector3(
-        curvePoints[2].x - 3,
-        curvePoints[2].y,
-        curvePoints[2].z + 5
-      ),
-    },
-]
+];
 
 export const Experience = () => {
   const curve = useMemo(() => {
@@ -555,10 +561,8 @@ export const Experience = () => {
 
       {/* models */}
       {models.map((model, index) => {
-        const {component, ...props} = model;
-        return (
-          <EarthModel {...props} />
-        )
+        const { component: Model } = model;
+        return <Model {...model} key={index} />;
       })}
 
       {/* Black Hole */}
