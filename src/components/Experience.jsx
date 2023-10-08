@@ -55,24 +55,24 @@ const textSections = [
     cameraRailDist: 1.5,
     position: new Vector3(
       curvePoints[2].x + 2,
-      curvePoints[2].y,
+      curvePoints[2].y + 1,
       curvePoints[2].z,
     ),
     text: {
       title: "Composition",
-      subtitle: "This planet is made up of diffent cores like..........",
+      subtitle: `This planet mainly consists of Oxygen, Silicon, Aluminium, Iron and Nickel. This makes the planet's color slightly pink-ish.`,
     },
   },
   {
     cameraRailDist: -1,
     position: new Vector3(
       curvePoints[3].x - 3,
-      curvePoints[3].y,
+      curvePoints[3].y + 1,
       curvePoints[3].z,
     ),
     text: {
       title: "Where life starts?",
-      subtitle: "Life started after the formation of organic compounds...",
+      subtitle: `Basic building blocks of life such as, Carbohydrates, protiens, and amino acids are formed by the combination of available gases. The combination continues to form coacervates which is simplest compound capable of regenerating itself.`,
     },
   },
   {
@@ -85,8 +85,7 @@ const textSections = [
     // rotation: new Euler(Math.PI / 4.2, Math.PI / 3.5, Math.PI * 1.8),
     text: {
       title: "Ocean life",
-      subtitle:
-        "After researching about ocean life, we have simulated a model....",
+      subtitle: `A promodial soup is formed in the ocean which is rich in organic compounds. The primodial soup consists of coacervates which evolves to give first unicellular prokaryotic organisms.`,
     },
   },
   {
@@ -99,8 +98,7 @@ const textSections = [
     // rotation: new Euler(Math.PI / 9, Math.PI / 32, Math.PI / 16),
     text: {
       title: "Macro life",
-      subtitle:
-        "After researching about macro life, we have simulated a model....",
+      subtitle: `The prokaryotic organisms evolves to give rise to eukaryotic organisms which evolves to give multi-cellular organims which evolve to give macro life. In our planet, the macro lifes evolved with thick cuticles/skin/bones to overcome higher UV rays, atmospheric pressure and gravity.`,
     },
   },
   {
@@ -113,7 +111,7 @@ const textSections = [
     text: {
       title: "Intelligent life",
       subtitle:
-        "Due to the harsh conditions in the planet, chances of intelligent life is slim...",
+        "Due to the harsh conditions in the planet, chances of intelligent life is slim.",
     },
   },
   {
@@ -126,7 +124,7 @@ const textSections = [
     text: {
       title: "Dream more",
       subtitle:
-        "This is just a simulation, we can't predict the future of this planet...",
+        "This is just a simulation, we can't predict the future of this planet, but we can appreciate the beauty of humanity that has brought us so far.",
     },
   },
 ];
