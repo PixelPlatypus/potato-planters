@@ -9,7 +9,7 @@ const App = () => {
   const location = useLocation();
   return (
     <TransitionGroup>
-      <CSSTransition key={location.key} classNames="fade" timeout={400}>
+      <CSSTransition key={location.key} classNames="fade">
         <Routes location={location}>
           <Route path="/explore" element={<Explore />} />
           <Route path="/" element={<Landing />} />
