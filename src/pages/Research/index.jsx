@@ -94,6 +94,10 @@ const Research = () => {
         <table className="data-table">
           <caption className="text-center">Atmospheric Composition</caption>
           <tr>
+            <th>Gas</th>
+            <th>Percentage</th>
+          </tr>
+          <tr>
             <td>N2 (Nitrogen)</td>
             <td>70%</td>
           </tr>
