@@ -5,10 +5,12 @@ import { useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { Euler, Group, Vector3 } from "three";
 import { fadeOnBeforeCompile } from "../utils/fadeMaterial";
-import { Airplane } from "./Airplane";
 import { Background } from "./Background";
-import { Cloud } from "./Cloud";
 import { TextSection } from "./TextSection";
+
+import CloudModel from "../models/CloudModel";
+import TimeMachineModel from "../models/TimeMachineModel";
+import BlackHoleModel from "../models/BlackHoleModel";
 
 const LINE_NB_POINTS = 1000;
 const CURVE_DISTANCE = 250;
@@ -21,17 +23,17 @@ export const Experience = () => {
   const curvePoints = useMemo(
     () => [
       new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, 0, -CURVE_DISTANCE),
-      new THREE.Vector3(100, 0, -2 * CURVE_DISTANCE),
-      new THREE.Vector3(-100, 0, -3 * CURVE_DISTANCE),
-      new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE),
-      new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE),
-      new THREE.Vector3(100, 0, -6 * CURVE_DISTANCE),
-      new THREE.Vector3(0, 0, -7 * CURVE_DISTANCE),
-      new THREE.Vector3(0, 0, -8 * CURVE_DISTANCE),
-
+      new THREE.Vector3(0, 0, -CURVE_DISTANCE), // Title
+      new THREE.Vector3(100, 0, -1.5 * CURVE_DISTANCE), // Subtopic
+      new THREE.Vector3(-100, 0, -2 * CURVE_DISTANCE), // Subtopic
+      new THREE.Vector3(100, 0, -3 * CURVE_DISTANCE), // Title
+      new THREE.Vector3(-100, 0, -3.5 * CURVE_DISTANCE), // Subtopic
+      new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE), // Subtopic
+      new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE), // Title
+      new THREE.Vector3(100, 0, -5.5 * CURVE_DISTANCE), // Subtopic
+      new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE), // Subtopic
     ],
-    []
+    [],
   );
 
   const curve = useMemo(() => {
@@ -45,55 +47,70 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[1].x - 3,
           curvePoints[1].y,
-          curvePoints[1].z
+          curvePoints[1].z,
         ),
         isText: true,
-        title: "Welcome to Roast-3369,",
-        subtitle: `Have a seat and enjoy the ride!`,
+        text: {
+          title: "Welcome to Roast-3369,",
+          subtitle: `Have a seat and enjoy the ride!`,
+        },
+        model: null,
       },
       {
         cameraRailDist: 1.5,
         position: new Vector3(
           curvePoints[2].x + 2,
           curvePoints[2].y,
-          curvePoints[2].z
+          curvePoints[2].z,
         ),
         isText: true,
-        title: "Lorem",
-        subtitle: `Lorem hello there`,
+        text: {
+          title: "Lorem",
+          subtitle: `Lorem hello there`,
+        },
+        model: null,
       },
       {
         cameraRailDist: -1,
         position: new Vector3(
           curvePoints[3].x - 3,
           curvePoints[3].y,
-          curvePoints[3].z
+          curvePoints[3].z,
         ),
         isText: true,
-        title: "Lorem",
-        subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        text: {
+          title: "Lorem",
+          subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        },
+        model: null,
       },
       {
         cameraRailDist: 1.5,
         position: new Vector3(
           curvePoints[4].x + 3.5,
           curvePoints[4].y,
-          curvePoints[4].z - 12
+          curvePoints[4].z - 12,
         ),
         isText: true,
-        title: "Lorem",
-        subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        text: {
+          title: "Lorem",
+          subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        },
+        model: null,
       },
       {
         cameraRailDist: 1.5,
         position: new Vector3(
           curvePoints[5].x + 3.5,
           curvePoints[5].y,
-          curvePoints[5].z - 12
+          curvePoints[5].z - 12,
         ),
         isText: true,
-        title: "Lorem Last",
-        subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        text: {
+          title: "Lorem Last",
+          subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+        },
+        model: null,
       },
     ];
   }, []);
@@ -122,7 +139,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[1].x + 10,
           curvePoints[1].y - 4,
-          curvePoints[1].z + 64
+          curvePoints[1].z + 64,
         ),
       },
       {
@@ -130,7 +147,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[1].x - 20,
           curvePoints[1].y + 4,
-          curvePoints[1].z + 28
+          curvePoints[1].z + 28,
         ),
         rotation: new Euler(0, Math.PI / 7, 0),
       },
@@ -140,7 +157,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[1].x - 13,
           curvePoints[1].y + 4,
-          curvePoints[1].z - 62
+          curvePoints[1].z - 62,
         ),
       },
       {
@@ -149,7 +166,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[1].x + 54,
           curvePoints[1].y + 2,
-          curvePoints[1].z - 82
+          curvePoints[1].z - 82,
         ),
       },
       {
@@ -157,7 +174,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[1].x + 8,
           curvePoints[1].y - 14,
-          curvePoints[1].z - 22
+          curvePoints[1].z - 22,
         ),
       },
       // SECOND POINT
@@ -166,7 +183,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[2].x + 6,
           curvePoints[2].y - 7,
-          curvePoints[2].z + 50
+          curvePoints[2].z + 50,
         ),
       },
       {
@@ -174,7 +191,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[2].x - 2,
           curvePoints[2].y + 4,
-          curvePoints[2].z - 26
+          curvePoints[2].z - 26,
         ),
       },
       {
@@ -182,7 +199,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[2].x + 12,
           curvePoints[2].y + 1,
-          curvePoints[2].z - 86
+          curvePoints[2].z - 86,
         ),
         rotation: new Euler(Math.PI / 4, 0, Math.PI / 3),
       },
@@ -192,7 +209,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[3].x + 3,
           curvePoints[3].y - 10,
-          curvePoints[3].z + 50
+          curvePoints[3].z + 50,
         ),
       },
       {
@@ -200,7 +217,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[3].x - 10,
           curvePoints[3].y,
-          curvePoints[3].z + 30
+          curvePoints[3].z + 30,
         ),
         rotation: new Euler(Math.PI / 4, 0, Math.PI / 5),
       },
@@ -209,7 +226,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[3].x - 20,
           curvePoints[3].y - 5,
-          curvePoints[3].z - 8
+          curvePoints[3].z - 8,
         ),
         rotation: new Euler(Math.PI, 0, Math.PI / 5),
       },
@@ -218,7 +235,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[3].x + 0,
           curvePoints[3].y - 5,
-          curvePoints[3].z - 98
+          curvePoints[3].z - 98,
         ),
         rotation: new Euler(0, Math.PI / 3, 0),
       },
@@ -228,7 +245,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[4].x + 3,
           curvePoints[4].y - 10,
-          curvePoints[4].z + 2
+          curvePoints[4].z + 2,
         ),
       },
       {
@@ -236,7 +253,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[4].x + 24,
           curvePoints[4].y - 6,
-          curvePoints[4].z - 42
+          curvePoints[4].z - 42,
         ),
         rotation: new Euler(Math.PI / 4, 0, Math.PI / 5),
       },
@@ -245,7 +262,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[4].x - 4,
           curvePoints[4].y + 9,
-          curvePoints[4].z - 62
+          curvePoints[4].z - 62,
         ),
         rotation: new Euler(Math.PI / 3, 0, Math.PI / 3),
       },
@@ -255,7 +272,7 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[7].x + 12,
           curvePoints[7].y - 5,
-          curvePoints[7].z + 60
+          curvePoints[7].z + 60,
         ),
         rotation: new Euler(-Math.PI / 4, -Math.PI / 6, 0),
       },
@@ -264,21 +281,49 @@ export const Experience = () => {
         position: new Vector3(
           curvePoints[7].x - 12,
           curvePoints[7].y + 5,
-          curvePoints[7].z + 120
+          curvePoints[7].z + 120,
+        ),
+        rotation: new Euler(Math.PI / 4, Math.PI / 6, 0),
+      },
+      // Eighth
+      {
+        scale: new Vector3(3, 3, 3),
+        position: new Vector3(
+          curvePoints[8].x + 12,
+          curvePoints[8].y - 5,
+          curvePoints[8].z + 60,
+        ),
+        rotation: new Euler(-Math.PI / 4, -Math.PI / 6, 0),
+      },
+      {
+        scale: new Vector3(3, 3, 3),
+        position: new Vector3(
+          curvePoints[8].x - 12,
+          curvePoints[8].y + 5,
+          curvePoints[8].z + 120,
         ),
         rotation: new Euler(Math.PI / 4, Math.PI / 6, 0),
       },
       {
         scale: new Vector3(4, 4, 4),
         position: new Vector3(
-          curvePoints[7].x,
-          curvePoints[7].y,
-          curvePoints[7].z
+          curvePoints[8].x,
+          curvePoints[8].y,
+          curvePoints[8].z,
+        ),
+        rotation: new Euler(0, 0, 0),
+      },
+      {
+        scale: new Vector3(3, 3, 3),
+        position: new Vector3(
+          curvePoints[8].x + 10,
+          curvePoints[8].y,
+          curvePoints[8].z - 200,
         ),
         rotation: new Euler(0, 0, 0),
       },
     ],
-    []
+    [],
   );
 
   const shape = useMemo(() => {
@@ -302,7 +347,7 @@ export const Experience = () => {
     // LOOK TO CLOSE TEXT SECTIONS
     textSections.forEach((textSection) => {
       const distance = textSection.position.distanceTo(
-        cameraGroup.current.position
+        cameraGroup.current.position,
       );
 
       if (distance < FRICTION_DISTANCE) {
@@ -310,7 +355,7 @@ export const Experience = () => {
         const targetCameraRailPosition = new Vector3(
           (1 - distance / FRICTION_DISTANCE) * textSection.cameraRailDist,
           0,
-          0
+          0,
         );
         cameraRail.current.position.lerp(targetCameraRailPosition, delta);
         resetCameraRail = false;
@@ -325,7 +370,7 @@ export const Experience = () => {
     let lerpedScrollOffset = THREE.MathUtils.lerp(
       lastScroll.current,
       scrollOffset,
-      delta * friction
+      delta * friction,
     );
     // PROTECT BELOW 0 AND ABOVE 1
     lerpedScrollOffset = Math.min(lerpedScrollOffset, 1);
@@ -342,11 +387,11 @@ export const Experience = () => {
     // Make the group look ahead on the curve
 
     const lookAtPoint = curve.getPoint(
-      Math.min(lerpedScrollOffset + CURVE_AHEAD_CAMERA, 1)
+      Math.min(lerpedScrollOffset + CURVE_AHEAD_CAMERA, 1),
     );
 
     const currentLookAt = cameraGroup.current.getWorldDirection(
-      new THREE.Vector3()
+      new THREE.Vector3(),
     );
     const targetLookAt = new THREE.Vector3()
       .subVectors(curPoint, lookAtPoint)
@@ -354,7 +399,7 @@ export const Experience = () => {
 
     const lookAt = currentLookAt.lerp(targetLookAt, delta * 24);
     cameraGroup.current.lookAt(
-      cameraGroup.current.position.clone().add(lookAt)
+      cameraGroup.current.position.clone().add(lookAt),
     );
 
     // Airplane rotation
@@ -367,7 +412,7 @@ export const Experience = () => {
 
     tangent.applyAxisAngle(
       new THREE.Vector3(0, 1, 0),
-      -nonLerpLookAt.rotation.y
+      -nonLerpLookAt.rotation.y,
     );
 
     let angle = Math.atan2(-tangent.z, tangent.x);
@@ -391,8 +436,8 @@ export const Experience = () => {
       new THREE.Euler(
         airplane.current.rotation.x,
         airplane.current.rotation.y,
-        angle
-      )
+        angle,
+      ),
     );
     airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
   });
@@ -446,18 +491,22 @@ export const Experience = () => {
         </group>
         <group ref={airplane}>
           <Float floatIntensity={1} speed={1.5} rotationIntensity={0.5}>
-            <Airplane
-              rotation-y={Math.PI / 2}
-              scale={[0.2, 0.2, 0.2]}
+            <TimeMachineModel
+              rotation-x={-Math.PI / 0.237}
+              scale={[0.02, 0.02, 0.02]}
               position-y={0.1}
             />
           </Float>
         </group>
       </group>
       {/* TEXT */}
-      {textSections.map((textSection, index) => (
-        <TextSection {...textSection} key={index} />
-      ))}
+      {textSections.map((textSection, index) =>
+        textSection.isText ? (
+          <TextSection {...textSection} key={index} />
+        ) : (
+          <h1> Idk man </h1>
+        ),
+      )}
 
       {/* LINE */}
       <group position-y={-2}>
@@ -484,8 +533,16 @@ export const Experience = () => {
 
       {/* CLOUDS */}
       {clouds.map((cloud, index) => (
-        <Cloud {...cloud} key={index} />
+        <CloudModel {...cloud} key={index} />
       ))}
+
+      {/* Black Hole */}
+      <BlackHoleModel
+        scale={[50, 50, 50]}
+        position={[curvePoints[8].x, curvePoints[8].y - 10, curvePoints[8].z]}
+        rotateZ={Math.PI / 2}
+        rotateY={Math.PI / 2}
+      />
     </>
   );
 };
