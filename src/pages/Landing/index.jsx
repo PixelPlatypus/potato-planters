@@ -47,8 +47,7 @@ function Landing() {
       ref={smokeRef}
       className="relative w-full h-screen bg-cover bg-center"
       style={{
-        backgroundImage:
-          "url(img/space.jpeg)",
+        backgroundImage: "url(img/space.jpeg)",
       }}
     >
       {smokeParticles.map((particle) => (
