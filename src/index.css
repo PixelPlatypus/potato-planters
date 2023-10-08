@@ -74,6 +74,12 @@
   will-change: transform;
 }
 
+.play-pause {
+  padding: 1rem;
+  color: white;
+  border: 1px solid white;
+}
+
 body {
   margin: 0;
 }

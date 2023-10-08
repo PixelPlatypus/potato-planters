@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import { Canvas } from "@react-three/fiber";
-
+import AudioPlayer from "../../components/AudioPlayer";
 import EarthModel from "../../components/EarthModel";
 
 import WelcomeText from "../../components/WelcomeText";
@@ -58,6 +58,7 @@ function Landing() {
         ></div>
       ))}
 
+      <AudioPlayer />
       <Canvas>
         <ambientLight intensity={0.4} />
 
