@@ -25,9 +25,11 @@ export const Experience = () => {
       new THREE.Vector3(100, 0, -2 * CURVE_DISTANCE),
       new THREE.Vector3(-100, 0, -3 * CURVE_DISTANCE),
       new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE),
-      new THREE.Vector3(0, 0, -5 * CURVE_DISTANCE),
-      new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE),
+      new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE),
+      new THREE.Vector3(100, 0, -6 * CURVE_DISTANCE),
       new THREE.Vector3(0, 0, -7 * CURVE_DISTANCE),
+      new THREE.Vector3(0, 0, -8 * CURVE_DISTANCE),
+
     ],
     []
   );
@@ -45,8 +47,9 @@ export const Experience = () => {
           curvePoints[1].y,
           curvePoints[1].z
         ),
-        subtitle: `Welcome to Potato Planters,
-Have a seat and enjoy the ride!`,
+        isText: true,
+        title: "Welcome to Roast-3369,",
+        subtitle: `Have a seat and enjoy the ride!`,
       },
       {
         cameraRailDist: 1.5,
@@ -55,6 +58,7 @@ Have a seat and enjoy the ride!`,
           curvePoints[2].y,
           curvePoints[2].z
         ),
+        isText: true,
         title: "Lorem",
         subtitle: `Lorem hello there`,
       },
@@ -65,6 +69,7 @@ Have a seat and enjoy the ride!`,
           curvePoints[3].y,
           curvePoints[3].z
         ),
+        isText: true,
         title: "Lorem",
         subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
       },
@@ -75,7 +80,19 @@ Have a seat and enjoy the ride!`,
           curvePoints[4].y,
           curvePoints[4].z - 12
         ),
+        isText: true,
         title: "Lorem",
+        subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
+      },
+      {
+        cameraRailDist: 1.5,
+        position: new Vector3(
+          curvePoints[5].x + 3.5,
+          curvePoints[5].y,
+          curvePoints[5].z - 12
+        ),
+        isText: true,
+        title: "Lorem Last",
         subtitle: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum nostrum delectus repellendus! Iste, quae voluptatibus?`,
       },
     ];
