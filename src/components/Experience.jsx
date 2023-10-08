@@ -13,6 +13,10 @@ import TimeMachineModel from "../models/TimeMachineModel";
 import BlackHoleModel from "../models/BlackHoleModel";
 import PlanetModel from "../models/PlanetModel";
 import AsteroidModel from "../models/AsteroidModel";
+import AlienVirusModel from "../models/AlienVirusModel";
+import AquaLifeModel from "../models/AquaLifeModel";
+import CockroachModel from "../models/CockroachModel";
+import AirplaneModel from "../models/AirplaneModel";
 
 const LINE_NB_POINTS = 1000;
 const CURVE_DISTANCE = 250;
@@ -25,11 +29,11 @@ const curvePoints = [
   new THREE.Vector3(0, 0, 0),
   new THREE.Vector3(0, 50, -CURVE_DISTANCE), // Title
   new THREE.Vector3(50, 0, -1.5 * CURVE_DISTANCE), // Detail
-  new THREE.Vector3(-50, 0, -2 * CURVE_DISTANCE), // Image
-  new THREE.Vector3(100, 0, -3 * CURVE_DISTANCE), // Title
-  new THREE.Vector3(-100, 0, -3.5 * CURVE_DISTANCE), // Subtopic
-  new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE), // Subtopic
-  new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE), // Title
+  new THREE.Vector3(-50, 40, -2 * CURVE_DISTANCE), // Image
+  new THREE.Vector3(50, 20, -3 * CURVE_DISTANCE), // Title
+  new THREE.Vector3(-50, 75, -3.25 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(100, 20, -4 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(-100, -100, -5 * CURVE_DISTANCE), // Title
   new THREE.Vector3(100, 0, -5.5 * CURVE_DISTANCE), // Subtopic
   new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE), // Subtopic
 ];
@@ -72,12 +76,13 @@ const textSections = [
     },
   },
   {
-    cameraRailDist: 1.5,
+    cameraRailDist: 1.7,
     position: new Vector3(
-      curvePoints[4].x + 3.5,
-      curvePoints[4].y,
-      curvePoints[4].z - 12,
+      curvePoints[4].x,
+      curvePoints[4].y + 2,
+      curvePoints[4].z,
     ),
+    // rotation: new Euler(Math.PI / 4.2, Math.PI / 3.5, Math.PI * 1.8),
     text: {
       title: "Ocean life",
       subtitle:
@@ -89,8 +94,9 @@ const textSections = [
     position: new Vector3(
       curvePoints[5].x + 3.5,
       curvePoints[5].y,
-      curvePoints[5].z - 12,
+      curvePoints[5].z,
     ),
+    // rotation: new Euler(Math.PI / 9, Math.PI / 32, Math.PI / 16),
     text: {
       title: "Macro life",
       subtitle:
@@ -101,7 +107,7 @@ const textSections = [
     cameraRailDist: 1.5,
     position: new Vector3(
       curvePoints[6].x - 3.5,
-      curvePoints[6].y,
+      curvePoints[6].y - 5,
       curvePoints[6].z - 12,
     ),
     text: {
@@ -126,15 +132,15 @@ const textSections = [
 ];
 
 const models = [
-  // {
-  //   component: PlanetModel,
-  //   scale: new Vector3(10, 10, 10),
-  //   position: new Vector3(
-  //     curvePoints[1].x + 23,
-  //     curvePoints[1].y,
-  //     curvePoints[1].z - 30,
-  //   ),
-  // },
+  {
+    component: PlanetModel,
+    scale: new Vector3(10, 10, 10),
+    position: new Vector3(
+      curvePoints[1].x + 23,
+      curvePoints[1].y,
+      curvePoints[1].z - 30,
+    ),
+  },
   {
     component: AsteroidModel,
     scale: new Vector3(3, 3, 3),
@@ -142,6 +148,42 @@ const models = [
       curvePoints[2].x,
       curvePoints[2].y - 10,
       curvePoints[2].z,
+    ),
+  },
+  {
+    component: AlienVirusModel,
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[3].x + 10,
+      curvePoints[3].y,
+      curvePoints[3].z - 20,
+    ),
+  },
+  {
+    component: AquaLifeModel,
+    scale: new Vector3(15, 15, 15),
+    position: new Vector3(
+      curvePoints[4].x - 5,
+      curvePoints[4].y - 1,
+      curvePoints[4].z - 10,
+    ),
+  },
+  {
+    component: CockroachModel,
+    scale: new Vector3(5, 5, 5),
+    position: new Vector3(
+      curvePoints[5].x + 5,
+      curvePoints[5].y - 2.5,
+      curvePoints[5].z - 20,
+    ),
+  },
+  {
+    component: AirplaneModel,
+    scale: new Vector3(2, 2, 2),
+    position: new Vector3(
+      curvePoints[6].x - 10,
+      curvePoints[6].y - 5,
+      curvePoints[6].z - 20,
     ),
   },
 ];
@@ -428,8 +470,6 @@ export const Experience = () => {
     cameraGroup.current.lookAt(
       cameraGroup.current.position.clone().add(lookAt),
     );
-
-    // Airplane rotation
 
     const tangent = curve.getTangent(lerpedScrollOffset + CURVE_AHEAD_AIRPLANE);
 

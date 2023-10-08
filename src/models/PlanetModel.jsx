@@ -18,7 +18,9 @@ const PlanetModel = (props) => {
         geometry={nodes.Object_4.geometry}
         material={materials.planet}
         rotation={[-2.502, 0.026, -2.289]}
-      />
+      >
+        <meshStandardMaterial color="teal" />
+      </mesh>
       <mesh
         geometry={nodes.Object_6.geometry}
         material={materials.clouds}
@@ -29,8 +31,15 @@ const PlanetModel = (props) => {
         geometry={nodes.Object_8.geometry}
         material={materials.atmosphere}
         rotation={[-1.921, -0.882, -1.141]}
-        scale={1.031}
-      />
+        scale={1.04}
+      >
+        <meshStandardMaterial
+          color="#ecafbb"
+          opacity={0.6}
+          transparent={true}
+          depthWrite={false}
+        />
+      </mesh>
     </group>
   );
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF("/alien_virus.glb");
+const AlienVirusModel = (props) => {
+  const { nodes, materials } = useGLTF("./models/virus/model.glb");
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -21,6 +21,8 @@ export function Model(props) {
       </group>
     </group>
   );
-}
+};
 
-useGLTF.preload("/alien_virus.glb");
+useGLTF.preload("./models/virus/model.glb");
+
+export default AlienVirusModel;
