@@ -6,7 +6,7 @@ import { Experience } from "../../components/Experience";
 function Explore() {
   return (
     <>
-      <Canvas>
+      <Canvas style={{position: 'absolute', top: 0, left: 0, height: '100vh'}}>
         <color attach="background" args={["#ececec"]} />
         <ScrollControls pages={20} damping={0.5}>
           <Experience />

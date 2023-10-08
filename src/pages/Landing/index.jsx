@@ -59,7 +59,6 @@ function Landing() {
         ></div>
       ))}
 
-      <AudioPlayer />
       <Canvas>
         <ambientLight intensity={0.4} />
 

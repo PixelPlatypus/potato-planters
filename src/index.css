@@ -75,13 +75,88 @@
 }
 
 .play-pause {
-  padding: 1rem;
+  padding: 0.5rem;
   color: white;
   border: 1px solid white;
   position: absolute;
   top: 0;
   left:0;
   z-index: 100;
+}
+
+/* music bars */
+
+.playing {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  transform: translateX(-50%) translateY(-50%);
+}
+.playing:after {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.now.playing .bar {
+  display: inline-block;
+  position: relative;
+  margin-right: 1px;
+  width: 5px;
+  height: 0.5px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, white, #c9c9c9);
+  color: transparent;
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+#music {
+  position: absolute;
+  top: 100px;
+  left: 15px;
+  z-index: 200;
+}
+.paused.playing .bar {
+  animation-iteration-count: 1;
+}
+.n1 {
+  animation-delay: 0.2s;
+}
+.n2 {
+  animation-delay: 0.4s;
+}
+.n3 {
+  animation-delay: 0.6s;
+}
+.n4 {
+  animation-delay: 0.8s;
+}
+@keyframes pulse {
+  0% {
+    height: 1px;
+    margin-top: 0;
+  }
+  10% {
+    height: 10px;
+    margin-top: -10px;
+  }
+  50% {
+    height: 30px;
+    margin-top: -30px;
+  }
+  60% {
+    height: 25px;
+    margin-top: -25px;
+  }
+  80% {
+    height: 15px;
+    margin-top: -15px;
+  }
+  100% {
+    height: 1px;
+    margin-top: 0;
+  }
 }
 
 body {
