@@ -82,7 +82,7 @@
   border: none;
   position: absolute;
   top: 20px;
-  left:20px;
+  left: 20px;
   z-index: 100;
 }
 
@@ -101,6 +101,7 @@
   margin-top: 10px;
 }
 .now.playing .bar {
+  opacity: 0.4;
   display: inline-block;
   position: relative;
   margin-right: 1px;
@@ -112,6 +113,7 @@
   animation-name: pulse;
   animation-duration: 2s;
   animation-iteration-count: infinite;
+  cursor: pointer;
 }
 #music {
   position: absolute;
@@ -121,43 +123,82 @@
 }
 .paused.playing .bar {
   animation-iteration-count: 1;
+  cursor: pointer;
 }
 .n1 {
+  height: 0;
   animation-delay: 0.2s;
+  border-radius: 10%;
 }
 .n2 {
+  height: 23.51px;
   animation-delay: 0.4s;
+  border-radius: 10%;
 }
 .n3 {
+  height: 38.04px;
   animation-delay: 0.6s;
+  border-radius: 10%;
 }
 .n4 {
+  height: 23.51px;
   animation-delay: 0.8s;
+  border-radius: 10%;
+}
+.n5 {
+  height: 0;
+  animation-delay: 1s;
+  border-radius: 10%;
+}
+.n6 {
+  height: 23.51px;
+  animation-delay: 1.2s;
+  border-radius: 10%;
+}
+.n7 {
+  height: 38.04px;
+  animation-delay: 1.4s;
+  border-radius: 10%;
+}
+.n8 {
+  height: 23.51px;
+  animation-delay: 1.6s;
+  border-radius: 10%;
+}
+.n9 {
+  height: 0;
+  animation-delay: 1.8s;
+  border-radius: 10%;
+}
+.n10 {
+  height: 23.51px;
+  animation-delay: 2s;
+  border-radius: 10%;
 }
 @keyframes pulse {
   0% {
-    height: 1px;
+    height: 0px;
     margin-top: 0;
   }
-  10% {
-    height: 10px;
-    margin-top: -10px;
+  20% {
+    height: 38.042px;
+    /* margin-top: -10px; */
   }
-  50% {
-    height: 30px;
-    margin-top: -30px;
+  40% {
+    height: 23.511px;
+    /* margin-top: -30px; */
   }
   60% {
-    height: 25px;
-    margin-top: -25px;
+    height: 23.511x;
+    /* margin-top: -25px; */
   }
   80% {
-    height: 15px;
-    margin-top: -15px;
+    height: 38.042px;
+    /* margin-top: -15px; */
   }
   100% {
-    height: 1px;
-    margin-top: 0;
+    height: 0px;
+    /* margin-top: 0; */
   }
 }
 

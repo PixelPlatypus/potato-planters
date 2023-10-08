@@ -1,10 +1,12 @@
 import React from "react";
 import Explore from "./pages/Explore";
 import Landing from "./pages/Landing";
-import AudioPlayer from "./components/AudioPlayer";
-import MusicBars from "./components/MusicBars";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+// ...
 
 const router = createBrowserRouter([
   {
@@ -18,12 +20,16 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const  location = useLocation();
   return (
-    <div style={{ position: "relative" }}>
-      <AudioPlayer />
-      <MusicBars />
-      <RouterProvider router={router} />
-    </div>
+    <TransitionGroup>
+      <CSSTransition key={location.key} classNames="fade" timeout={400}>
+        <Routes location={location}>
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </CSSTransition>
+    </TransitionGroup>
   );
 };
 
