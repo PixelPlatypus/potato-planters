@@ -61,6 +61,7 @@ function Landing() {
 
       <AudioPlayer />
       <Canvas>
+        
         <ambientLight intensity={0.4} />
 
         <pointLight position={[10, 10, 10]} />
