@@ -1,7 +1,9 @@
 import { Text } from "@react-three/drei";
 import { fadeOnBeforeCompileFlat } from "../utils/fadeMaterial";
 
-export const TextSection = ({ title, subtitle, ...props }) => {
+export const TextSection = ({ text, ...props }) => {
+  const { title, subtitle } = text;
+
   return (
     <group {...props}>
       {!!title && (

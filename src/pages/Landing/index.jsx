@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import { Canvas } from "@react-three/fiber";
-import AudioPlayer from "../../components/AudioPlayer";
-import EarthModel from "../../components/EarthModel";
+import EarthModel from "../../models/EarthModel";
 
 import WelcomeText from "../../components/WelcomeText";
 import styles from "./landing.module.css";
@@ -14,21 +13,16 @@ function Landing() {
 
   const handleMouseMove = (event) => {
     const x = event.clientX;
-
     const y = event.clientY;
 
     const newParticle = {
       id: Date.now(),
-
       x,
-
       y,
     };
-
     setSmokeParticles((prev) => [...prev, newParticle]);
 
     // After a short delay, remove the particle to create a fading trail
-
     setTimeout(() => {
       setSmokeParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
     }, 800);
@@ -38,7 +32,8 @@ function Landing() {
     smokeRef.current.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      // smokeRef.current.removeEventListener("mousemove", handleMouseMove);
+      if (smokeRef.current)
+        smokeRef.current.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -48,7 +43,7 @@ function Landing() {
       className="relative w-full h-screen bg-cover bg-center"
       style={{
         backgroundImage: "url(img/space.jpeg)",
-        overflow: 'hidden'
+        overflow: "hidden",
       }}
     >
       {smokeParticles.map((particle) => (
@@ -60,11 +55,8 @@ function Landing() {
       ))}
 
       <Canvas>
-        
         <ambientLight intensity={0.4} />
-
         <pointLight position={[10, 10, 10]} />
-
         <EarthModel />
       </Canvas>
 

@@ -14,16 +14,16 @@ export const Background = ({ backgroundColors }) => {
 
   useFrame(() => {
     gradientRef.current.colorA = new THREE.Color(
-      backgroundColors.current.colorA
+      backgroundColors.current.colorA,
     );
     gradientRef.current.colorB = new THREE.Color(
-      backgroundColors.current.colorB
+      backgroundColors.current.colorB,
     );
     gradientEnvRef.current.colorA = new THREE.Color(
-      backgroundColors.current.colorA
+      backgroundColors.current.colorA,
     );
     gradientEnvRef.current.colorB = new THREE.Color(
-      backgroundColors.current.colorB
+      backgroundColors.current.colorB,
     );
   });
 
