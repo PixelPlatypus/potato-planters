@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import EarthModel from "../../components/EarthModel";
 
 import WelcomeText from "../../components/WelcomeText";
-import "./main.css";
+import styles from "./landing.module.css";
 
 function Landing() {
   const [smokeParticles, setSmokeParticles] = useState([]);
@@ -53,7 +53,7 @@ function Landing() {
       {smokeParticles.map((particle) => (
         <div
           key={particle.id}
-          className="smoke-particle"
+          className={styles.smokeParticle}
           style={{ left: particle.x, top: particle.y }}
         ></div>
       ))}

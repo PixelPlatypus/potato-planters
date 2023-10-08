@@ -33,7 +33,7 @@
   }
 } */
 
-.smoke-particle {
+.smokeParticle {
   position: absolute;
 
   width: 50px;
@@ -48,7 +48,7 @@
 
   pointer-events: none;
 
-  animation: smokeAnimation 2s infinite;
+  animation: smokeAnimation 1.3s infinite;
 
   transform: translate(
     -50%,
