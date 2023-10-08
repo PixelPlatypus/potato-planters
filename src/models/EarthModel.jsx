@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-function EarthModel() {
+function EarthModel({position, scale}) {
   const meshRef = useRef();
   const { scene } = useGLTF("./models/earth/scene.gltf");
 

@@ -57,7 +57,7 @@ function Landing() {
       <Canvas>
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} />
-        <EarthModel />
+        <EarthModel position={[-7, -3, 0]} scale={[4, 5, 4]} />
       </Canvas>
 
       <WelcomeText />

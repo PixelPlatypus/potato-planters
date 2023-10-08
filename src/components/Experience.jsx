@@ -11,6 +11,7 @@ import { TextSection } from "./TextSection";
 import CloudModel from "../models/CloudModel";
 import TimeMachineModel from "../models/TimeMachineModel";
 import BlackHoleModel from "../models/BlackHoleModel";
+import EarthModel from "../models/EarthModel";
 
 const LINE_NB_POINTS = 1000;
 const CURVE_DISTANCE = 250;
@@ -19,336 +20,338 @@ const CURVE_AHEAD_AIRPLANE = 0.02;
 const AIRPLANE_MAX_ANGLE = 35;
 const FRICTION_DISTANCE = 42;
 
-export const Experience = () => {
-  const curvePoints = useMemo(
-    () => [
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, 0, -CURVE_DISTANCE), // Title
-      new THREE.Vector3(100, 0, -1.5 * CURVE_DISTANCE), // Subtopic
-      new THREE.Vector3(-100, 0, -2 * CURVE_DISTANCE), // Subtopic
-      new THREE.Vector3(100, 0, -3 * CURVE_DISTANCE), // Title
-      new THREE.Vector3(-100, 0, -3.5 * CURVE_DISTANCE), // Subtopic
-      new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE), // Subtopic
-      new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE), // Title
-      new THREE.Vector3(100, 0, -5.5 * CURVE_DISTANCE), // Subtopic
-      new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE), // Subtopic
-    ],
-    [],
-  );
+const curvePoints = [
+  new THREE.Vector3(0, 0, 0),
+  new THREE.Vector3(0, 0, -CURVE_DISTANCE), // Title
+  new THREE.Vector3(100, 0, -1.5 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(-100, 0, -2 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(100, 0, -3 * CURVE_DISTANCE), // Title
+  new THREE.Vector3(-100, 0, -3.5 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(-100, 0, -5 * CURVE_DISTANCE), // Title
+  new THREE.Vector3(100, 0, -5.5 * CURVE_DISTANCE), // Subtopic
+  new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE), // Subtopic
+]
 
+const textSections = [
+  {
+    cameraRailDist: -1,
+    position: new Vector3(
+      curvePoints[1].x - 3,
+      curvePoints[1].y,
+      curvePoints[1].z,
+    ),
+    text: {
+      title: "Welcome to Roast-3369,",
+      subtitle: `Have a seat and enjoy the ride!`,
+    },
+  },
+  {
+    cameraRailDist: 1.5,
+    position: new Vector3(
+      curvePoints[2].x + 2,
+      curvePoints[2].y,
+      curvePoints[2].z,
+    ),
+    text: {
+      title: "Composition",
+      subtitle: "This planet is made up of diffent cores like..........",
+    },
+  },
+  {
+    cameraRailDist: -1,
+    position: new Vector3(
+      curvePoints[3].x - 3,
+      curvePoints[3].y,
+      curvePoints[3].z,
+    ),
+    text: {
+      title: "Where life starts?",
+      subtitle: "Life started after the formation of organic compounds...",
+    },
+  },
+  {
+    cameraRailDist: 1.5,
+    position: new Vector3(
+      curvePoints[4].x + 3.5,
+      curvePoints[4].y,
+      curvePoints[4].z - 12,
+    ),
+    text: {
+      title: "Ocean life",
+      subtitle:
+        "After researching about ocean life, we have simulated a model....",
+    },
+  },
+  {
+    cameraRailDist: 1.5,
+    position: new Vector3(
+      curvePoints[5].x + 3.5,
+      curvePoints[5].y,
+      curvePoints[5].z - 12,
+    ),
+    text: {
+      title: "Macro life",
+      subtitle:
+        "After researching about macro life, we have simulated a model....",
+    },
+  },
+  {
+    cameraRailDist: 1.5,
+    position: new Vector3(
+      curvePoints[6].x - 3.5,
+      curvePoints[6].y,
+      curvePoints[6].z - 12,
+    ),
+    text: {
+      title: "Intelligent life",
+      subtitle:
+        "Due to the harsh conditions in the planet, chances of intelligent life is slim...",
+    },
+  },
+  {
+    cameraRailDist: 1.5,
+    position: new Vector3(
+      curvePoints[7].x + 3.5,
+      curvePoints[7].y,
+      curvePoints[7].z - 12,
+    ),
+    text: {
+      title: "Dream more",
+      subtitle:
+        "This is just a simulation, we can't predict the future of this planet...",
+    },
+  },
+]
+
+const clouds = [
+  {
+    position: new Vector3(-3.5, -3.2, -7),
+  },
+  {
+    position: new Vector3(3.5, -4, -10),
+  },
+  {
+    scale: new Vector3(4, 4, 4),
+    position: new Vector3(-18, 0.2, -68),
+    rotation: new Euler(-Math.PI / 5, Math.PI / 6, 0),
+  },
+  {
+    scale: new Vector3(2.5, 2.5, 2.5),
+    position: new Vector3(10, -1.2, -52),
+  },
+  // FIRST POINT
+  {
+    scale: new Vector3(4, 4, 4),
+    position: new Vector3(
+      curvePoints[1].x + 10,
+      curvePoints[1].y - 4,
+      curvePoints[1].z + 64,
+    ),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[1].x - 20,
+      curvePoints[1].y + 4,
+      curvePoints[1].z + 28,
+    ),
+    rotation: new Euler(0, Math.PI / 7, 0),
+  },
+  {
+    rotation: new Euler(0, Math.PI / 7, Math.PI / 5),
+    scale: new Vector3(5, 5, 5),
+    position: new Vector3(
+      curvePoints[1].x - 13,
+      curvePoints[1].y + 4,
+      curvePoints[1].z - 62,
+    ),
+  },
+  {
+    rotation: new Euler(Math.PI / 2, Math.PI / 2, Math.PI / 3),
+    scale: new Vector3(5, 5, 5),
+    position: new Vector3(
+      curvePoints[1].x + 54,
+      curvePoints[1].y + 2,
+      curvePoints[1].z - 82,
+    ),
+  },
+  {
+    scale: new Vector3(5, 5, 5),
+    position: new Vector3(
+      curvePoints[1].x + 8,
+      curvePoints[1].y - 14,
+      curvePoints[1].z - 22,
+    ),
+  },
+  // SECOND POINT
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[2].x + 6,
+      curvePoints[2].y - 7,
+      curvePoints[2].z + 50,
+    ),
+  },
+  {
+    scale: new Vector3(2, 2, 2),
+    position: new Vector3(
+      curvePoints[2].x - 2,
+      curvePoints[2].y + 4,
+      curvePoints[2].z - 26,
+    ),
+  },
+  {
+    scale: new Vector3(4, 4, 4),
+    position: new Vector3(
+      curvePoints[2].x + 12,
+      curvePoints[2].y + 1,
+      curvePoints[2].z - 86,
+    ),
+    rotation: new Euler(Math.PI / 4, 0, Math.PI / 3),
+  },
+  // THIRD POINT
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[3].x + 3,
+      curvePoints[3].y - 10,
+      curvePoints[3].z + 50,
+    ),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[3].x - 10,
+      curvePoints[3].y,
+      curvePoints[3].z + 30,
+    ),
+    rotation: new Euler(Math.PI / 4, 0, Math.PI / 5),
+  },
+  {
+    scale: new Vector3(4, 4, 4),
+    position: new Vector3(
+      curvePoints[3].x - 20,
+      curvePoints[3].y - 5,
+      curvePoints[3].z - 8,
+    ),
+    rotation: new Euler(Math.PI, 0, Math.PI / 5),
+  },
+  {
+    scale: new Vector3(5, 5, 5),
+    position: new Vector3(
+      curvePoints[3].x + 0,
+      curvePoints[3].y - 5,
+      curvePoints[3].z - 98,
+    ),
+    rotation: new Euler(0, Math.PI / 3, 0),
+  },
+  // FOURTH POINT
+  {
+    scale: new Vector3(2, 2, 2),
+    position: new Vector3(
+      curvePoints[4].x + 3,
+      curvePoints[4].y - 10,
+      curvePoints[4].z + 2,
+    ),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[4].x + 24,
+      curvePoints[4].y - 6,
+      curvePoints[4].z - 42,
+    ),
+    rotation: new Euler(Math.PI / 4, 0, Math.PI / 5),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[4].x - 4,
+      curvePoints[4].y + 9,
+      curvePoints[4].z - 62,
+    ),
+    rotation: new Euler(Math.PI / 3, 0, Math.PI / 3),
+  },
+  // FINAL
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[7].x + 12,
+      curvePoints[7].y - 5,
+      curvePoints[7].z + 60,
+    ),
+    rotation: new Euler(-Math.PI / 4, -Math.PI / 6, 0),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[7].x - 12,
+      curvePoints[7].y + 5,
+      curvePoints[7].z + 120,
+    ),
+    rotation: new Euler(Math.PI / 4, Math.PI / 6, 0),
+  },
+  // Eighth
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[8].x + 12,
+      curvePoints[8].y - 5,
+      curvePoints[8].z + 60,
+    ),
+    rotation: new Euler(-Math.PI / 4, -Math.PI / 6, 0),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[8].x - 12,
+      curvePoints[8].y + 5,
+      curvePoints[8].z + 120,
+    ),
+    rotation: new Euler(Math.PI / 4, Math.PI / 6, 0),
+  },
+  {
+    scale: new Vector3(4, 4, 4),
+    position: new Vector3(
+      curvePoints[8].x,
+      curvePoints[8].y,
+      curvePoints[8].z,
+    ),
+    rotation: new Euler(0, 0, 0),
+  },
+  {
+    scale: new Vector3(3, 3, 3),
+    position: new Vector3(
+      curvePoints[8].x + 10,
+      curvePoints[8].y,
+      curvePoints[8].z - 200,
+    ),
+    rotation: new Euler(0, 0, 0),
+  },
+]
+
+const models = [
+    {
+      component: EarthModel,
+      scale: new Vector3(1,1,1),
+      position: new Vector3(
+        curvePoints[2].x - 3,
+        curvePoints[2].y,
+        curvePoints[2].z + 5
+      ),
+    },
+]
+
+export const Experience = () => {
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(curvePoints, false, "catmullrom", 0.5);
   }, []);
-
-  const textSections = useMemo(() => {
-    return [
-      {
-        cameraRailDist: -1,
-        position: new Vector3(
-          curvePoints[1].x - 3,
-          curvePoints[1].y,
-          curvePoints[1].z,
-        ),
-        text: {
-          title: "Welcome to Roast-3369,",
-          subtitle: `Have a seat and enjoy the ride!`,
-        },
-      },
-      {
-        cameraRailDist: 1.5,
-        position: new Vector3(
-          curvePoints[2].x + 2,
-          curvePoints[2].y,
-          curvePoints[2].z,
-        ),
-        text: {
-          title: "Composition",
-          subtitle: "This planet is made up of diffent cores like..........",
-        },
-      },
-      {
-        cameraRailDist: -1,
-        position: new Vector3(
-          curvePoints[3].x - 3,
-          curvePoints[3].y,
-          curvePoints[3].z,
-        ),
-        text: {
-          title: "Where life starts?",
-          subtitle: "Life started after the formation of organic compounds...",
-        },
-      },
-      {
-        cameraRailDist: 1.5,
-        position: new Vector3(
-          curvePoints[4].x + 3.5,
-          curvePoints[4].y,
-          curvePoints[4].z - 12,
-        ),
-        text: {
-          title: "Ocean life",
-          subtitle:
-            "After researching about ocean life, we have simulated a model....",
-        },
-      },
-      {
-        cameraRailDist: 1.5,
-        position: new Vector3(
-          curvePoints[5].x + 3.5,
-          curvePoints[5].y,
-          curvePoints[5].z - 12,
-        ),
-        text: {
-          title: "Macro life",
-          subtitle:
-            "After researching about macro life, we have simulated a model....",
-        },
-      },
-      {
-        cameraRailDist: 1.5,
-        position: new Vector3(
-          curvePoints[6].x - 3.5,
-          curvePoints[6].y,
-          curvePoints[6].z - 12,
-        ),
-        text: {
-          title: "Intelligent life",
-          subtitle:
-            "Due to the harsh conditions in the planet, chances of intelligent life is slim...",
-        },
-      },
-      {
-        cameraRailDist: 1.5,
-        position: new Vector3(
-          curvePoints[7].x + 3.5,
-          curvePoints[7].y,
-          curvePoints[7].z - 12,
-        ),
-        text: {
-          title: "Dream more",
-          subtitle:
-            "This is just a simulation, we can't predict the future of this planet...",
-        },
-      },
-    ];
-  }, []);
-
-  const clouds = useMemo(
-    () => [
-      // STARTING
-      {
-        position: new Vector3(-3.5, -3.2, -7),
-      },
-      {
-        position: new Vector3(3.5, -4, -10),
-      },
-      {
-        scale: new Vector3(4, 4, 4),
-        position: new Vector3(-18, 0.2, -68),
-        rotation: new Euler(-Math.PI / 5, Math.PI / 6, 0),
-      },
-      {
-        scale: new Vector3(2.5, 2.5, 2.5),
-        position: new Vector3(10, -1.2, -52),
-      },
-      // FIRST POINT
-      {
-        scale: new Vector3(4, 4, 4),
-        position: new Vector3(
-          curvePoints[1].x + 10,
-          curvePoints[1].y - 4,
-          curvePoints[1].z + 64,
-        ),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[1].x - 20,
-          curvePoints[1].y + 4,
-          curvePoints[1].z + 28,
-        ),
-        rotation: new Euler(0, Math.PI / 7, 0),
-      },
-      {
-        rotation: new Euler(0, Math.PI / 7, Math.PI / 5),
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[1].x - 13,
-          curvePoints[1].y + 4,
-          curvePoints[1].z - 62,
-        ),
-      },
-      {
-        rotation: new Euler(Math.PI / 2, Math.PI / 2, Math.PI / 3),
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[1].x + 54,
-          curvePoints[1].y + 2,
-          curvePoints[1].z - 82,
-        ),
-      },
-      {
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[1].x + 8,
-          curvePoints[1].y - 14,
-          curvePoints[1].z - 22,
-        ),
-      },
-      // SECOND POINT
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[2].x + 6,
-          curvePoints[2].y - 7,
-          curvePoints[2].z + 50,
-        ),
-      },
-      {
-        scale: new Vector3(2, 2, 2),
-        position: new Vector3(
-          curvePoints[2].x - 2,
-          curvePoints[2].y + 4,
-          curvePoints[2].z - 26,
-        ),
-      },
-      {
-        scale: new Vector3(4, 4, 4),
-        position: new Vector3(
-          curvePoints[2].x + 12,
-          curvePoints[2].y + 1,
-          curvePoints[2].z - 86,
-        ),
-        rotation: new Euler(Math.PI / 4, 0, Math.PI / 3),
-      },
-      // THIRD POINT
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[3].x + 3,
-          curvePoints[3].y - 10,
-          curvePoints[3].z + 50,
-        ),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[3].x - 10,
-          curvePoints[3].y,
-          curvePoints[3].z + 30,
-        ),
-        rotation: new Euler(Math.PI / 4, 0, Math.PI / 5),
-      },
-      {
-        scale: new Vector3(4, 4, 4),
-        position: new Vector3(
-          curvePoints[3].x - 20,
-          curvePoints[3].y - 5,
-          curvePoints[3].z - 8,
-        ),
-        rotation: new Euler(Math.PI, 0, Math.PI / 5),
-      },
-      {
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[3].x + 0,
-          curvePoints[3].y - 5,
-          curvePoints[3].z - 98,
-        ),
-        rotation: new Euler(0, Math.PI / 3, 0),
-      },
-      // FOURTH POINT
-      {
-        scale: new Vector3(2, 2, 2),
-        position: new Vector3(
-          curvePoints[4].x + 3,
-          curvePoints[4].y - 10,
-          curvePoints[4].z + 2,
-        ),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[4].x + 24,
-          curvePoints[4].y - 6,
-          curvePoints[4].z - 42,
-        ),
-        rotation: new Euler(Math.PI / 4, 0, Math.PI / 5),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[4].x - 4,
-          curvePoints[4].y + 9,
-          curvePoints[4].z - 62,
-        ),
-        rotation: new Euler(Math.PI / 3, 0, Math.PI / 3),
-      },
-      // FINAL
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[7].x + 12,
-          curvePoints[7].y - 5,
-          curvePoints[7].z + 60,
-        ),
-        rotation: new Euler(-Math.PI / 4, -Math.PI / 6, 0),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[7].x - 12,
-          curvePoints[7].y + 5,
-          curvePoints[7].z + 120,
-        ),
-        rotation: new Euler(Math.PI / 4, Math.PI / 6, 0),
-      },
-      // Eighth
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[8].x + 12,
-          curvePoints[8].y - 5,
-          curvePoints[8].z + 60,
-        ),
-        rotation: new Euler(-Math.PI / 4, -Math.PI / 6, 0),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[8].x - 12,
-          curvePoints[8].y + 5,
-          curvePoints[8].z + 120,
-        ),
-        rotation: new Euler(Math.PI / 4, Math.PI / 6, 0),
-      },
-      {
-        scale: new Vector3(4, 4, 4),
-        position: new Vector3(
-          curvePoints[8].x,
-          curvePoints[8].y,
-          curvePoints[8].z,
-        ),
-        rotation: new Euler(0, 0, 0),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[8].x + 10,
-          curvePoints[8].y,
-          curvePoints[8].z - 200,
-        ),
-        rotation: new Euler(0, 0, 0),
-      },
-    ],
-    [],
-  );
 
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
     shape.moveTo(0, -0.08);
     shape.lineTo(0, 0.08);
-
     return shape;
   }, [curve]);
 
@@ -362,7 +365,7 @@ export const Experience = () => {
 
     let friction = 1;
     let resetCameraRail = true;
-    // LOOK TO CLOSE TEXT SECTIONS
+
     textSections.forEach((textSection) => {
       const distance = textSection.position.distanceTo(
         cameraGroup.current.position,
@@ -545,10 +548,18 @@ export const Experience = () => {
         </mesh>
       </group>
 
-      {/* CLOUDS */}
+      {/* clouds */}
       {clouds.map((cloud, index) => (
         <CloudModel {...cloud} key={index} />
       ))}
+
+      {/* models */}
+      {models.map((model, index) => {
+        const {component, ...props} = model;
+        return (
+          <EarthModel {...props} />
+        )
+      })}
 
       {/* Black Hole */}
       <BlackHoleModel
