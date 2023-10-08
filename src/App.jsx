@@ -19,8 +19,7 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <div style={{position: 'relative'}}>
-    
+    <div style={{ position: "relative" }}>
       <AudioPlayer />
       <MusicBars />
       <RouterProvider router={router} />
